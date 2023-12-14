@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+{% block title %}Adding Address{% endblock %} 
+{% block content %} 
+<style>
+  .title-style {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: hsl(52, 0%, 98%);
+  }
+
+  .title-quote {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: 400;
+      color: hsl(52, 0%, 98%);
+  }
+</style>
+<section class="h-80" style="background-color:white;">
+  <div class="container py-5 ">
+      <div class="row d-flex justify-content-center align-items-center ">
+          <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                  <div class="row g-0">
+                      <div class="col-md-6 col-lg-6 d-none d-md-block">
+                          <img src="../../static/shop/addressform.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                      </div>
+                      <div class="col-md-6 col-lg-6 d-flex align-items-center">
+                          <div class="card-body p-4 p-lg-5 text-black">
+                              <h2>Add New Address</h2>
+                              <form action="" method="post" class=""> 
+                                {% csrf_token %} 
+                                {% for item in form %} 
+                                <label class="form-label">
+                                      {{item.label_tag}}
+                                  </label>
+                                  <input type="text"> {% endfor %} <button type="submit" class="btn btn-light mt-3"> Create </button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section> 
+{% endblock %}

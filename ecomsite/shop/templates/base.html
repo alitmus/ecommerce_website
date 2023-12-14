@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>e-commerc site | {% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'shop/favicon.png' %}">
+        <!-- CSS Boottstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <!-- ICON CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900" rel="stylesheet" type="text/css">
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    -->
+        <!-- jquery CDN -->
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- popover CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <!-- js CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <!-- local CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <br>
+        <!-- Alerts --> {% if messages %} {% for message in messages %} <div id="alert-div" class="alert bg-dark-subtle mt-5" role="alert">
+            {{ message }}
+        </div> {% endfor %} {% endif %} 
+        <script>
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $('#alert-div').fadeOut('slow');
+                }, 3000); // 5000 milliseconds = 5 seconds
+            });
+        </script>
+        <!-- End of Alerts -->
+        <header>
+            <!-- NavBar -->
+            <nav class="navbar navbar-expand-lg bg-white fixed-top align-items-center">
+                <div class="container-fluid">
+                    <!-- Logo -->
+                    <a class="navbar-brand" href="/shop/">
+                        <img src="{% static 'shop/logo.png' %}" alt="Shop" style="height: 32px;">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- NavBar Links -->
+                        <div class="col-lg-5">
+                            <ul class="navbar-nav me-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/shop/women/">Women</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/shop/men/">Men</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/shop/kids/">Kids</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/shop/about/">About</a>
+                                </li>
+                                <!-- Search field -->
+                                <form class="d-flex" role="search">
+                                    <input class="form-control bg-transparent " name="item_name" type="search" placeholder="Search" aria-label="Search" style="height:40px;">
+                                    <button class="btn" type="submit">
+                                        <i class="bi-search"></i>
+                                    </button>
+                                </form>
+                            </ul>
+                        </div>
+                        <!-- Navbar Title -->
+                        <div class="col-lg-5">
+                            <ul class="navbar-nav me-auto">
+                                <li class="navbar-text m-0" style="color: rgb(14, 3, 57);font-family: Impact; font-size: 24px;">e-commerc site</li>
+                            </ul>
+                        </div>
+                        <!-- Account and Card  -->
+                        <div class="col-lg-2">
+                            <ul class="navbar-nav me-auto"> {% if user.is_authenticated %} <li class="nav-item">
+                                    <a href="{% url 'logout' %}?next=/shop/" class="btn  nav-link"> Logout</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'profile' %}" class="btn  nav-link">
+                                        <i class="bi bi-person-circle"></i>
+                                    </a>
+                                </li> {% else %} <li>
+                                    <a href="{% url 'login' %}" class="btn  nav-link"> Login </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'profile' %}" class="btn  nav-link">
+                                        <i class="bi bi-person-circle  "></i>
+                                    </a>
+                                </li> {% endif %} <li>
+                                    <!-- <a  href="{% url 'shop:checkout' %}"  data-bs-html="true" type="button" class="btn " data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Cart Content"  ><i class="bi bi-cart-fill" ></i><span id="cart">(0)</span></a> -->
+                                    <a href="{% url 'shop:checkout' %}" id="cart" data-bs-html="true" type="button" class="btn " data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Cart Content">
+                                        <i class="bi bi-cart-fill"></i>
+                                        <span id="cart_q"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- End of Navbar -->
+        </header>
+        <main>
+            <br>
+            <br> {% block content %} {% endblock %}
+        </main>
+        <!--  footer content  -->
+        <footer class="text-light text-center text-md-start bg-black container-fluid">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row mt-2">
+                    <!--Grid column-->
+                    <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4  ">Contact</h5>
+                        <ul class="fa-ul">
+                            <li class="mb-3">
+                                <span class="fa-li">
+                                    <i class="bi-geo-alt-fill"></i>
+                                </span>
+                                <span class="ms-2">Katowice, Poland</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fa-li">
+                                    <i class="bi-envelope-at-fill"></i>
+                                </span>
+                                <span class="ms-2">ali.litmus@gmail.com</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fa-li">
+                                    <i class="bi-telephone-fill"></i>
+                                </span>
+                                <span class="ms-2">+ 48 728 998 043</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <a class="m-2" style="color: white;" href="https://github.com/alitmus">
+                                <i class="bi-github"></i>
+                            </a>
+                            <a class="m-2" style="color: white;" href="https://www.linkedin.com/in/alitmus92/">
+                                <i class="bi-linkedin"></i>
+                            </a>
+                            <a class="m-2" style="color: white;" href="https://www.facebook.com/">
+                                <i class="bi-facebook"></i>
+                            </a>
+                            <a class="m-2" style="color: white;" href='https://www.twitter.com/'>
+                                <i class="bi-twitter"></i>
+                            </a>
+                            <a class="m-2" style="color: white;">
+                                <i class="bi-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4">Links</h5>
+                        <ul>Delivery</ul>
+                        <ul>Refund</ul>
+                        <ul>Guarantee</ul>
+                    </div>
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4 pb-1">Subscribe</h5>
+                        <div class="form-outline form-white mb-4">
+                            <form action="" method="post"> {% csrf_token %} {{subscribe.as_p}}
+                                <label class="form-label" for="subscribe.email">Your Email:</label>
+                                <input type="email" id="subscribe.email" class="form-control bg-transparent" placeholder="For updates and discounts" style="color: white;" />
+                                <button type="submit" class="btn btn-outline-secondary mt-2" style="color: white;">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!-- Grid container -->
+                <!-- Copyright -->
+                <div class="text-center p-3 mt-5 mb-0" style="background-color: rgba(0, 0, 0, 0.2);"> © 2023 Copyright: <a class="text-white" href="https://github.com/alitmus">github.com/alitmus</a>
+                </div>
+                <!-- Copyright -->
+            </div>
+        </footer>
+    </body>
+</html>

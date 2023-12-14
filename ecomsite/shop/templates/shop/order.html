@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+{% block content %} 
+<section class="h-100 gradient-custom">
+  <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-10 col-xl-8">
+              <div class="card" style="border-radius: 10px;">
+                  <div class="card-header px-4 py-5">
+                      <h5 class="text-muted mb-0">Thanks for your Order, <span style="color:goldenrod;">{{object.user}}</span>! </h5>
+                  </div>
+                  <div class="card-body p-4">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                          <p class="lead fw-normal mb-0" style="color: #a8729a;">Receipt</p>
+                          <p class="small text-muted mb-0">Receipt Voucher : {{object.id}}</p>
+                      </div> 
+                      {% for item in object.items.all %} 
+                      <div class="card shadow-0 border mb-4">
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col-md-2">
+                                      <img src="{{item.item.image.url}}" class="img-fluid" alt="Phone" style="height: 80px;">
+                                  </div>
+                                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                      <p class="text-muted mb-0">{{item.item.title}}</p>
+                                  </div>
+                                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                      <p class="text-muted mb-0 small">{{item.item.price}}</p>
+                                  </div>
+                                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                      <p class="text-muted mb-0 small">{{item.item.discount_price}}</p>
+                                  </div>
+                                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                      <p class="text-muted mb-0 small">Qty: {{item.quantity}}</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> 
+                      {% endfor %}
+                  </div>
+                  <div class="d-flex justify-content-between pt-2 card-footer ">
+                      <p class="fw-bold mb-0">Total Paid</p>
+                      <p class="text-muted mb-0">
+                          <span class="fw-bold me-4">Total</span> ${{object.get_total}}
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section> 
+{% endblock %}

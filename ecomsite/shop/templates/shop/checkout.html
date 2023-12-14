@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}CheckOut{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row m-5">
+      <div class="col-md-12">
+          <h1>Your Cart</h1>
+          <hr>
+      </div>
+  </div>
+  <div class="row m-5 mb-0">
+      <div class="col-md-12">
+          <h4>Items in your cart</h4>
+          <hr>
+      </div>
+  </div>
+  <div class="table-responsive text-nowrap  m-5 mt-0">
+      <table class="table col-lg-8">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Item</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Total Item Price</th>
+              </tr>
+          </thead>
+          <tbody> {% for order_item in object.items.all %} <tr>
+                  <th scope="row">{{ forloop.counter}}</th>
+                  <td>
+                      <a href="/shop/product/{{order_item.item.id}}">
+                          <img src="{{order_item.item.image.url}}" alt="" style="height: 60px;border-radius: 10%;">
+                      </a>
+                  </td>
+                  <td>{{order_item.item.title}}</td>
+                  <td>
+                      <span>
+                          <a href="{{order_item.item.get_remove_from_cart_url}}">
+                              <i class="bi bi-dash-square btn"></i>
+                          </a>
+                      </span> {{order_item.quantity}}
+                      <span>
+                          <a href="{{order_item.item.get_increase_quantity_url}}">
+                              <i class="bi bi-plus-square btn"></i>
+                          </a>
+                      </span>
+                  </td>
+                  <td>{{order_item.item.price}}</td>
+                  <td> {% if order_item.item.discount_price %} {{order_item.get_total_discount_item_price}}
+                      <span class="badge bg-black">You Saved:{{order_item.get_amount_saved}}</span> {% else %} {{order_item.get_total_item_price}} {% endif %}
+                  </td>
+              </tr> {% empty %} <tr>
+                  <td>Your cart is empty</td>
+              </tr> {% endfor %} <tr>
+                  <td colspan="4"></td>
+                  <td colspan="">
+                      <b>Total</b>
+                  </td>
+                  <td>
+                      <b>${{object.get_total}}</b>
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="5"></td>
+                  <td colspan="">
+                      <a class="btn btn-outline-secondary " href="" style="color: black;"> To CheckOut</a>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div> 
+{% endblock %}

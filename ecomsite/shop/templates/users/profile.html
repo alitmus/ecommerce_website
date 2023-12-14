@@ -1,0 +1,139 @@
+{% extends 'base.html' %} 
+{% block title %}Profile{% endblock %} 
+{% block content %} <section>
+  <div class="container py-5">
+      <div class="row">
+          <div class="col"></div>
+      </div>
+      <div class="row">
+          <div class="col-lg-4">
+              <div class="card mb-4">
+                  <div class="card-body text-center">
+                      <img src="{{user.profile.image.url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                      <h5 class="my-3">{{user.username}}</h5>
+                      <div class="d-flex justify-content-center mb-2"></div>
+                  </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+                  <div class="card-body p-0">
+                      <div class="cart-title p-3"> Your Addresses
+                          <hr> 
+                          {% for item in address %} 
+                          <div class="row">
+                              <div class="col-lg-10">
+                                  <a href="/address_update/{{item.id}}">
+                                      <div class="row card mb-3 m-1">
+                                          <div class="col-lg-8">
+                                              {{item}}
+                                          </div>
+                                      </div>
+                                  </a>
+                              </div>
+                              <div class="col-lg-2 mt-1">
+                                  <a href="/address_delete/{{item.id}}">
+                                      <i class="bi bi-dash-square"></i>
+                                  </a>
+                              </div>
+                          </div>
+                          <style>
+                              a {
+                                  text-decoration: none;
+                                  color: black;
+                              }
+                          </style> 
+                          {% endfor %} <a href="/address_form/" class="btn btn-outline-dark"> New <i class="bi bi-envelope-plus"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-8">
+              <div class="card mb-4">
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <p class="mb-0">Full Name</p>
+                          </div>
+                          <div class="col-sm-9">
+                              <p class="text-muted mb-0">{{user.first_name}} {{user.last_name}}</p>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <p class="mb-0">Email</p>
+                          </div>
+                          <div class="col-sm-9">
+                              <p class="text-muted mb-0">{{user.email}}</p>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <p class="mb-0">Phone</p>
+                          </div>
+                          <div class="col-sm-9">
+                              <p class="text-muted mb-0">728 998 043</p>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <p class="mb-0">Username</p>
+                          </div>
+                          <div class="col-sm-9">
+                              <p class="text-muted mb-0">{{user.username}}</p>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <p class="mb-0">Date of Joining</p>
+                          </div>
+                          <div class="col-sm-9">
+                              <p class="text-muted mb-0">{{user.date_joined}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 col-lg-12">
+                      <div class="card mb-4 mb-md-0">
+                          <div class="card-body">
+                              <p class="mb-3">
+                                  <span class="text-primary font-italic me-1"></span> Your Shopping History
+                              </p>
+                              <hr>
+                              <style>
+                                  a:hover {
+                                      background-color: rgb(238, 238, 238);
+                                  }
+                              </style>
+                              <div class="card shadow-0 border mb-4">
+                                  <a href="/shop/order/" style="text-decoration: none;">
+                                      <div class="card-body">
+                                          <div class="row">
+                                              <div class="col-lg-3 text-center d-flex justify-content-center align-items-center">
+                                                  <p class="text-muted mb-0">{{orders.ordered_date}}</p>
+                                              </div> 
+                                              {% for order in orders.items.all %} 
+                                              <div class="col-lg-2">
+                                                  <img src="{{order.item.image.url}}" class="img-fluid" alt="Phone" style="height: 80px;bottom: 3px solid black;border-radius: 10%;">
+                                              </div> 
+                                              {% endfor %} 
+                                              <div class="col-lg-1 text-center d-flex justify-content-center align-items-center">
+                                                  <p class="text-muted mb-0"> ${{orders.get_total}}</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section> 
+{% endblock %}

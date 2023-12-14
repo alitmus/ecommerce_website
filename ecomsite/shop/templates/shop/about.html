@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<section class="h-80" style="background-color:white;">
+    <div class="container py-5 ">
+        <div class="row d-flex justify-content-center align-items-center ">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-6 d-none d-md-block">
+                            <img src="../../static/shop/sweter.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                        </div>
+                        <div class="col-md-6 col-lg-6 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <h2 class="mb-5">About Our Shop</h2>
+                                <p style="color: black;font-weight:bolder ;font-family:  Geneva, sans-serif;"> Our shop has {{products_count}} products and {{customers}} customers. We invite you to become a part of our global fashion community. Follow us on social media, engage with our blog for style inspiration, and share your own fashion journey with us using #YourFashionOnlineShop. Together, let's celebrate the beauty of self-expression through fashion. Thank you for choosing our shop as your fashion destination. We look forward to being your trusted partner on your style journey. Happy shopping! </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

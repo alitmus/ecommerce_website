@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% block title %}Women{% endblock %} 
+{% block content %} 
+<div class="container-fluid">
+  <div class="row "> 
+    {% for product in products %} 
+    <div class="col-md-6 col-lg-4 col-sm-12" style="justify-content: center;align-items: center;">
+          <div class="card h-100 bg-transparent border-0 mb-2" href="/shop/product/{{product.id}}">
+              <a href="/shop/product/{{product.id}}">
+                  <img src="{{product.image.url}}" class="card-img-top " alt="{{product.title}}" style=" max-height:500px;min-width:100px;height:auto;width:auto;max-width:500px;">
+              </a>
+              <div class="card-body">
+                  <div id="nm{{product.id}}" class="card-title" style="font-weight: bold;">{{product.title}}</div>
+                  <div class="card-text " style="color: grey;">{{product.category.name}}</div>
+                  <div class="card-text price" id="price{‌{product.id}}"> ${{product.price}}
+                      <span class="badge badge-pill bg-{{product.label}}"> {{product.get_label_display}}</span>
+                  </div>
+                  <br>
+              </div>
+          </div>
+      </div> 
+    {% endfor %} 
+{% endblock %}

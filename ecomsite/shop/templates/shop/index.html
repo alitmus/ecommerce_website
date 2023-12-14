@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+  .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bolder;
+      font-size: 72px;
+      color: aliceblue;
+  }
+</style>
+<!-- Banner -->
+<img src="../../static/shop/slider- (4).jpg" alt="slide1" style="width: 100%;">
+<div class="centered mt-5">AUTUMN SALE</div>
+<br>
+<br>
+<!-- categories slider  -->
+<div class="container-fluid">
+  <div class="row">
+      <div class="options col-lg-12"> {% for category in categories %} <div class="option active" href="/" style="--optionBackground:url({{category.image.url}})">
+              <div class="label">
+                  <div class="icon">
+                      <a>
+                          <i class="bi bi-bag-heart-fill" style="color:grey;"></i>
+                      </a>
+                  </div>
+                  <div class="info">
+                      <div class="main">{{category.name}}</div>
+                      <div class="sub"></div>
+                  </div>
+              </div>
+          </div> {% endfor %} </div>
+  </div>
+</div>
+<script>
+  $(".option").click(function() {
+      $(".option").removeClass("active");
+      $(this).addClass("active");
+  });
+</script>
+<br>
+<br>
+<div class="container-fluid">
+  <div class="row "> {% for product in products %} <div class="col-md-6 col-lg-4 col-sm-12" style="justify-content: center;align-items: center;">
+          <div class="card h-100 bg-transparent border-0 mb-2" href="/shop/product/{{product.id}}">
+              <a href="/shop/product/{{product.id}}">
+                  <img src="{{product.image.url}}" class="card-img-top " alt="{{product.title}}" style=" max-height:500px;
+          
+          min-width:100px;
+        
+          height:auto;
+          width:auto;
+          max-width:500px;">
+              </a>
+              <div class="card-body">
+                  <div id="nm{{product.id}}" class="card-title" style="font-weight: bold;">{{product.title}}</div>
+                  <div class="card-text " style="color: grey;">{{product.category.name}}</div>
+                  <div class="card-text price" id="price{‌{product.id}}"> ${{product.price}}
+                      <span class="badge badge-pill bg-{{product.label}}"> {{product.get_label_display}}</span>
+                  </div>
+                  <br>
+              </div>
+          </div>
+      </div> {% endfor %} </div>
+</div>
+<br>
+<!-- paginator -->
+<div class="container-fluid row" style="align-items: center;">
+  <div class="col-md-3 offset-md-5">
+      <ul class="pagination"> {% if products.has_previous %} <li class="page-item">
+              <a class="btn btn-light" href="?page={{products.previous_page_number}}">Previous</a>
+          </li> {% endif %} <li class="page-item active">
+              <a class=" btn btn-light" href="?page={{products.number}}">Current</a>
+          </li> {% if products.has_next %} <li class="page-item">
+              <a class="btn btn-light" href="?page={{products.next_page_number}}">Next</a>
+          </li> {% endif %} </ul>
+  </div>
+</div>
+<br> 
+{% endblock %}
