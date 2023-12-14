@@ -1,7 +1,4 @@
-https://github.com/alitmus/ecommerce_website/blob/main/ecommerc-website-alitmus.mp4
-
-[![asciicast](https://github.com/alitmus/ecommerce_website/blob/main/ecommerc-website-alitmus.mp4
-)
 
 
-[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/T-D1KVIuvjA)
+https://github.com/alitmus/ecommerce_website/assets/114218914/4a5f2d4c-a313-41dd-8a83-996fe5b51899
+
