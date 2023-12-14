@@ -8,9 +8,9 @@ This is an e-commerce website project, developed using Python and Django, aims t
 
 ## Features
 
-- User Authintication 
+- User Authentication 
 - Search Option
-- Shopping History
+- User's Shopping History 
 - Multiple Delivery Addresses
 - Tags and Categories
 
